@@ -1,0 +1,11 @@
+.column.is-flex {
+  align-items: center;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.entry-row:hover {
+  cursor: pointer;
+}
