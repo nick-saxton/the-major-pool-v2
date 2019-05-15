@@ -36,6 +36,9 @@ const Navbar = () => {
           <Link to="/british" className="navbar-item">
             The Open Championship
           </Link>
+          <Link to="/overall" className="navbar-item">
+            Overall
+          </Link>
         </div>
       </div>
     </nav>

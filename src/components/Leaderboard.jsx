@@ -7,31 +7,38 @@ const Leaderboard = ({ entries, filter, highScore, players }) => {
 
   const entriesWithTotal = Object.keys(entries)
     .map(entryName => {
-      const picks = [];
+      if (typeof entries[entryName] === "number") {
+        return {
+          name: entryName,
+          total: entries[entryName]
+        };
+      } else {
+        const picks = [];
 
-      const total = entries[entryName].reduce((total, player) => {
-        if (players[player] && players[player].active) {
-          picks.push({
-            name: player,
-            total: players[player].total,
-            active: true
-          });
-          return total + players[player].total;
-        } else {
-          picks.push({
-            name: player,
-            total: highScore + 1,
-            active: false
-          });
-          return total + (highScore + 1);
-        }
-      }, 0);
+        const total = entries[entryName].reduce((total, player) => {
+          if (players[player] && players[player].active) {
+            picks.push({
+              name: player,
+              total: players[player].total,
+              active: true
+            });
+            return total + players[player].total;
+          } else {
+            picks.push({
+              name: player,
+              total: highScore + 1,
+              active: false
+            });
+            return total + (highScore + 1);
+          }
+        }, 0);
 
-      return {
-        name: entryName,
-        total,
-        picks
-      };
+        return {
+          name: entryName,
+          total,
+          picks
+        };
+      }
     })
     .sort((a, b) => a.total - b.total)
     .map((entry, index, allEntries) => {

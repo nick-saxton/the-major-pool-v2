@@ -42,6 +42,12 @@ class App extends React.Component {
                 <Tournament name="The Open Championship" id="100" />
               )}
             />
+            <Route
+              path="/overall"
+              render={() => (
+                <Tournament name="Overall" id={["033", "014", "026", "100"]} />
+              )}
+            />
           </div>
         </div>
       </Router>

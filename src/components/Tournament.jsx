@@ -27,53 +27,201 @@ class Tournament extends React.Component {
   }
 
   componentDidMount() {
-    fetch(
-      `https://statdata.pgatour.com/r/${this.props.id}/leaderboard-v2mini.json`
-    )
-      .then(res => res.json())
-      .then(data => {
-        let entriesForTournament = {};
+    if (typeof this.props.id === "string") {
+      fetch(
+        `https://statdata.pgatour.com/r/${
+          this.props.id
+        }/leaderboard-v2mini.json`
+      )
+        .then(res => res.json())
+        .then(data => {
+          let entriesForTournament = {};
 
-        Object.keys(entries).forEach(entryName => {
-          entriesForTournament[entryName] =
-            entries[entryName][tournamentIDs[this.props.id]];
+          Object.keys(entries).forEach(entryName => {
+            entriesForTournament[entryName] =
+              entries[entryName][tournamentIDs[this.props.id]];
+          });
+
+          let highScore = -99;
+
+          data.leaderboard.players.forEach(player => {
+            if (player.total > highScore && player.status === "active") {
+              highScore = player.total;
+            }
+          });
+
+          let players = {};
+
+          data.leaderboard.players.forEach(player => {
+            players[
+              `${player.player_bio.short_name}. ${
+                player.player_bio.last_name
+              }`.toUpperCase()
+            ] = {
+              total: player.total,
+              active: player.status === "active"
+            };
+          });
+
+          this.setState({
+            entries: entriesForTournament,
+            highScore,
+            loading: false,
+            players,
+            year: data.debug.setup_year
+          });
         });
+    } else {
+      let entryTotals = {};
 
-        let highScore = -99;
+      fetch(
+        `https://statdata.pgatour.com/r/${
+          this.props.id[0]
+        }/leaderboard-v2mini.json`
+      )
+        .then(res => res.json())
+        .then(data => {
+          if (data.debug.setup_year === "2019") {
+            const { highScore, players } = this.getHighScoreAndPlayerScores(
+              data
+            );
 
-        data.leaderboard.players.forEach(player => {
-          if (player.total > highScore && player.status === "active") {
-            highScore = player.total;
+            Object.keys(entries).forEach(entryName => {
+              entryTotals[entryName] = entries[entryName][
+                tournamentIDs[this.props.id[0]]
+              ].reduce((total, playerName) => {
+                const player = players[playerName];
+                if (player && player.active) {
+                  return (total += player.total);
+                } else {
+                  return (total += highScore + 1);
+                }
+              }, 0);
+            });
           }
-        });
 
-        let players = {};
+          return fetch(
+            `https://statdata.pgatour.com/r/${
+              this.props.id[1]
+            }/leaderboard-v2mini.json`
+          );
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.debug.setup_year === "2019") {
+            const { highScore, players } = this.getHighScoreAndPlayerScores(
+              data
+            );
 
-        data.leaderboard.players.forEach(player => {
-          players[
-            `${player.player_bio.short_name}. ${
-              player.player_bio.last_name
-            }`.toUpperCase()
-          ] = {
-            total: player.total,
-            active: player.status === "active"
-          };
-        });
+            Object.keys(entries).forEach(entryName => {
+              entryTotals[entryName] += entries[entryName][
+                tournamentIDs[this.props.id[1]]
+              ].reduce((total, playerName) => {
+                const player = players[playerName];
+                if (player && player.active) {
+                  return (total += player.total);
+                } else {
+                  return (total += highScore + 1);
+                }
+              }, 0);
+            });
 
-        this.setState({
-          entries: entriesForTournament,
-          highScore,
-          loading: false,
-          players,
-          year: data.debug.setup_year
+            return fetch(
+              `https://statdata.pgatour.com/r/${
+                this.props.id[2]
+              }/leaderboard-v2mini.json`
+            );
+          }
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.debug.setup_year === "2019") {
+            const { highScore, players } = this.getHighScoreAndPlayerScores(
+              data
+            );
+
+            Object.keys(entries).forEach(entryName => {
+              entryTotals[entryName] += entries[entryName][
+                tournamentIDs[this.props.id[2]]
+              ].reduce((total, playerName) => {
+                const player = players[playerName];
+                if (player && player.active) {
+                  return (total += player.total);
+                } else {
+                  return (total += highScore + 1);
+                }
+              }, 0);
+            });
+          }
+
+          return fetch(
+            `https://statdata.pgatour.com/r/${
+              this.props.id[3]
+            }/leaderboard-v2mini.json`
+          );
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.debug.setup_year === "2019") {
+            const { highScore, players } = this.getHighScoreAndPlayerScores(
+              data
+            );
+
+            Object.keys(entries).forEach(entryName => {
+              entryTotals[entryName] += entries[entryName][
+                tournamentIDs[this.props.id[3]]
+              ].reduce((total, playerName) => {
+                const player = players[playerName];
+                if (player && player.active) {
+                  return (total += player.total);
+                } else {
+                  return (total += highScore + 1);
+                }
+              }, 0);
+            });
+          }
+
+          this.setState({
+            entries: entryTotals,
+            loading: false,
+            year: "2019"
+          });
         });
-      });
+    }
   }
 
   clearFilter() {
     this.setState({
       filter: ""
     });
+  }
+
+  getHighScoreAndPlayerScores(data) {
+    let highScore = -99;
+
+    data.leaderboard.players.forEach(player => {
+      if (player.total > highScore && player.status === "active") {
+        highScore = player.total;
+      }
+    });
+
+    let players = {};
+
+    data.leaderboard.players.forEach(player => {
+      players[
+        `${player.player_bio.short_name}. ${
+          player.player_bio.last_name
+        }`.toUpperCase()
+      ] = {
+        total: player.total,
+        active: player.status === "active"
+      };
+    });
+
+    return {
+      highScore,
+      players
+    };
   }
 
   updateFilter(event) {
