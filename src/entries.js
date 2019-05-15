@@ -187,7 +187,7 @@ const entries = {
   },
   "DAVID HAVERLAND": {
     Masters: ["R. MCILROY", "T. FINAU", "J. THOMAS"],
-    PGA: ["B. DECHAMBEAU", "S. GARCIA", "X. SHAUFFELE"],
+    PGA: ["B. DECHAMBEAU", "S. GARCIA", "X. SCHAUFFELE"],
     US: ["B. KOEPKA", "T. WOODS", "D. JOHNSON"],
     British: ["F. MOLLINARI", "J. ROSE", "J. RAHM"]
   },
