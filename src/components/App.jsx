@@ -22,7 +22,7 @@ class App extends React.Component {
             <Route
               path="/"
               exact
-              render={() => <Tournament name="The Masters" id="014" />}
+              render={() => <Tournament name="PGA Championship" id="033" />}
             />
             <Route
               path="/masters"
