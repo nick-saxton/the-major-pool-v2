@@ -110,12 +110,12 @@ const entries = {
   "JASON KAGE": {
     Masters: ["J. THOMAS", "J. ROSE", "M. KUCHAR"],
     PGA: ["B. KOEPKA", "D. JOHNSON", "T. FINAU"],
-    US: ["T. FLEETWOOD", "R. FOWLER", "C. SMITH"],
+    US: ["T. FLEETWOOD", "R. FOWLER", "CA. SMITH"],
     British: ["J. RAHM", "F. MOLINARI", "R. MCILROY"]
   },
   "KATE BISKUPSKI": {
     Masters: ["R. MCILROY", "T. FLEETWOOD", "R. FOWLER"],
-    PGA: ["B. DECHAMBEAU", "D. JOHNSON", "C. SMITH"],
+    PGA: ["B. DECHAMBEAU", "D. JOHNSON", "CA. SMITH"],
     US: ["M. KUCHAR", "T. WOODS", "P. CASEY"],
     British: ["F. MOLINARI", "J. DAY", "B. KOEPKA"]
   },

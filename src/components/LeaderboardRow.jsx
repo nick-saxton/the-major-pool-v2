@@ -6,7 +6,9 @@ const LeaderboardRow = ({ entry, index }) => {
   return (
     <>
       <tr
-        className={`entry-row ${index % 2 ? "has-background-light" : ""}`}
+        className={`${entry.picks ? "entry-row" : ""} ${
+          index % 2 ? "has-background-light" : ""
+        }`}
         onClick={() => setExpanded(!expanded)}
         title="Click to view picks"
       >
