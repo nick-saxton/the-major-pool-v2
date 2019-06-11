@@ -42,12 +42,14 @@ const Leaderboard = ({ entries, filter, highScore, players }) => {
     })
     .sort((a, b) => a.total - b.total)
     .map((entry, index, allEntries) => {
-      let place = currentPlace + 1;
+      let place = index + 1;
+
       if (index > 0 && entry.total === allEntries[index - 1].total) {
         place = currentPlace;
       } else {
-        currentPlace += 1;
+        currentPlace = place;
       }
+
       return {
         ...entry,
         place
