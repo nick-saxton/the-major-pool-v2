@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ authenticated, onSignOut }) => {
   const [burgerExpanded, setBurgerExpanded] = useState(false);
 
   return (
@@ -39,6 +39,24 @@ const Navbar = () => {
           <Link to="/overall" className="navbar-item">
             Overall
           </Link>
+        </div>
+        <div className="navbar-end">
+          {authenticated ? (
+            <>
+              <Link to="/" className="navbar-item" onClick={onSignOut}>
+                Log Out
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/signup" className="navbar-item">
+                Sign Up
+              </Link>
+              <Link to="/login" className="navbar-item">
+                Log In
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
