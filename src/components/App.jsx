@@ -63,12 +63,47 @@ class App extends React.Component {
     } = this.state;
 
     return (
+<<<<<<< HEAD
       <>
         {!loading && (
           <Router>
             <Navbar
               authenticated={authenticated}
               onSignOut={this.handleSignOut}
+=======
+      <Router>
+        <Navbar />
+        <div className="section">
+          <div className="container">
+            <Route
+              path="/"
+              exact
+              render={() => <Tournament name="U.S. Open" id="026" />}
+            />
+            <Route
+              path="/masters"
+              render={() => <Tournament name="The Masters" id="014" />}
+            />
+            <Route
+              path="/pga"
+              render={() => <Tournament name="PGA Championship" id="033" />}
+            />
+            <Route
+              path="/us"
+              render={() => <Tournament name="U.S. Open" id="026" />}
+            />
+            <Route
+              path="/british"
+              render={() => (
+                <Tournament name="The Open Championship" id="100" />
+              )}
+            />
+            <Route
+              path="/overall"
+              render={() => (
+                <Tournament name="Overall" id={["033", "014", "026", "100"]} />
+              )}
+>>>>>>> master
             />
             <div className="section">
               <div className="container">
