@@ -19,10 +19,6 @@ class App extends React.Component {
       showSignOutSuccess: false,
       wasLoggedIn: false
     };
-
-    this.handleCloseSignOutNotification = this.handleCloseSignOutNotification.bind(
-      this
-    );
   }
 
   componentWillMount() {
@@ -30,23 +26,14 @@ class App extends React.Component {
       if (user) {
         this.setState({
           authenticated: true,
-          loading: false,
-          showSignOutSuccess: false,
-          wasLoggedIn: true
+          loading: false
         });
       } else {
         this.setState({
           authenticated: false,
-          loading: false,
-          showSignOutSuccess: true
+          loading: false
         });
       }
-    });
-  }
-
-  handleCloseSignOutNotification() {
-    this.setState({
-      showSignOutSuccess: false
     });
   }
 
@@ -55,67 +42,18 @@ class App extends React.Component {
   }
 
   render() {
-    const {
-      authenticated,
-      loading,
-      showSignOutSuccess,
-      wasLoggedIn
-    } = this.state;
+    const { authenticated, loading } = this.state;
 
     return (
-<<<<<<< HEAD
       <>
         {!loading && (
           <Router>
             <Navbar
               authenticated={authenticated}
               onSignOut={this.handleSignOut}
-=======
-      <Router>
-        <Navbar />
-        <div className="section">
-          <div className="container">
-            <Route
-              path="/"
-              exact
-              render={() => <Tournament name="U.S. Open" id="026" />}
-            />
-            <Route
-              path="/masters"
-              render={() => <Tournament name="The Masters" id="014" />}
-            />
-            <Route
-              path="/pga"
-              render={() => <Tournament name="PGA Championship" id="033" />}
-            />
-            <Route
-              path="/us"
-              render={() => <Tournament name="U.S. Open" id="026" />}
-            />
-            <Route
-              path="/british"
-              render={() => (
-                <Tournament name="The Open Championship" id="100" />
-              )}
-            />
-            <Route
-              path="/overall"
-              render={() => (
-                <Tournament name="Overall" id={["033", "014", "026", "100"]} />
-              )}
->>>>>>> master
             />
             <div className="section">
               <div className="container">
-                {showSignOutSuccess && wasLoggedIn && (
-                  <div className="notification is-success">
-                    <button
-                      className="delete"
-                      onClick={this.handleCloseSignOutNotification}
-                    />
-                    You are now logged out.
-                  </div>
-                )}
                 <Route
                   path="/"
                   exact

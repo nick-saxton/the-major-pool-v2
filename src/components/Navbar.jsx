@@ -42,20 +42,22 @@ const Navbar = ({ authenticated, onSignOut }) => {
         </div>
         <div className="navbar-end">
           {authenticated ? (
-            <>
-              <Link to="/" className="navbar-item" onClick={onSignOut}>
+            <div className="navbar-item">
+              <Link to="/" className="button is-light" onClick={onSignOut}>
                 Log Out
               </Link>
-            </>
+            </div>
           ) : (
-            <>
-              <Link to="/signup" className="navbar-item">
-                Sign Up
-              </Link>
-              <Link to="/login" className="navbar-item">
-                Log In
-              </Link>
-            </>
+            <div className="navbar-item">
+              <div className="buttons">
+                <Link to="/signup" className="button is-link navbar-item">
+                  Sign Up
+                </Link>
+                <Link to="/login" className="button is-light navbar-item">
+                  Log In
+                </Link>
+              </div>
+            </div>
           )}
         </div>
       </div>
