@@ -80,7 +80,7 @@ const entries = {
   "RYAN WHITE": {
     Masters: ["J. THOMAS", "D. JOHNSON", "M. LEISHMAN"],
     PGA: ["B. KOEPKA", "R. FOWLER", "G. WOODLAND"],
-    US: ["M. KUTCHAR", "J. RAHM", "X. SCHAUFFELE"],
+    US: ["M. KUCHAR", "J. RAHM", "X. SCHAUFFELE"],
     British: ["J. ROSE", "R. MCILROY", "T. FLEETWOOD"]
   },
   "KEN GAWLAK": {
@@ -224,7 +224,7 @@ const entries = {
   "MIKE HLEBOVY": {
     Masters: ["R. MCILROY", "F. MOLINARI", "T. WOODS"],
     PGA: ["D. JOHNSON", "J. THOMAS", "B. DECHAMBEAU"],
-    US: ["B. KOEPKA", "JB HOLMES", "R. FOWLER"],
+    US: ["B. KOEPKA", "J. HOLMES", "R. FOWLER"],
     British: ["J. ROSE", "T. FLEETWOOD", "M. KUCHAR"]
   },
   "JASON RAKSNIS": {
