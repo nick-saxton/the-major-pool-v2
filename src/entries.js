@@ -189,7 +189,7 @@ const entries = {
     Masters: ["R. MCILROY", "T. FINAU", "J. THOMAS"],
     PGA: ["B. DECHAMBEAU", "S. GARCIA", "X. SCHAUFFELE"],
     US: ["B. KOEPKA", "T. WOODS", "D. JOHNSON"],
-    British: ["F. MOLLINARI", "J. ROSE", "J. RAHM"]
+    British: ["F. MOLINARI", "J. ROSE", "J. RAHM"]
   },
   "CHRIS EASTER": {
     Masters: ["J. SPIETH", "J. RAHM", "H. MATSUYAMA"],
